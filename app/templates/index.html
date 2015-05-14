@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+  <ul class=entries>
+  {% for git in git_data %}
+    <li><h4>{{git.committed_date}} - {{git.author.name}} < {{git.author.email}} ></h4> 
+    <a href="https://github.com/jdubs/docker-app/commit/{{ git.hexsha }}">{{ git.hexsha }}</a>
+  {% else %}
+    <li><em>No Commits!</em>
+  {% endfor %}
+  </ul>
+{% endblock %}
