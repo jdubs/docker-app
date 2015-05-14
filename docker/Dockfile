@@ -1,0 +1,16 @@
+FROM ubuntu:14.04
+MAINTAINER John-William Trenholm <jw@xomar.com>
+
+RUN apt-get install python-flask git python-setuptools -y
+RUN easy_install gitpython
+
+RUN mkdir -p /opt/app
+RUN mkdir -p /root/.ssh
+RUN touch /root/.ssh/id_rsa
+RUN chmod 700 /root/.ssh/id_rsa
+RUN echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config
+RUN git clone git@github.com:jdubs/docker-app.git /opt/app
+
+EXPOSE 5000
+ENTRYPOINT ["/bin/bash"]
+
