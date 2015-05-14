@@ -1,0 +1,14 @@
+---
+- name: Deploy Docker-app
+  hosts: apps
+  user: jw
+  
+  tasks:
+  - name: application container
+    docker:
+      docker_url: ubuntu-01
+      name: docker-app
+      image: jdubs/ubuntu:14.04-flaskv2
+      state: reloaded
+      ports:
+      - "127.0.0.1:5000:5000"
